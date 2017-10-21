@@ -1,3 +1,5 @@
+import { getOwner } from '@ember/application';
+import { computed } from '@ember/object';
 import BaseAdapter from 'ember-metrics/metrics-adapters/base';
 import canUseDOM from 'ember-metrics/utils/can-use-dom';
 
@@ -5,6 +7,8 @@ function track(event) {
   if (!canUseDOM) {
     return;
   }
+
+  let window = this.get('window');
 
   if (!window._satellite) {
     window._satellite = {
@@ -22,6 +26,10 @@ function track(event) {
 }
 
 export default BaseAdapter.extend({
+  window: computed(function() {
+    return getOwner(this).lookup('service:window') || window;
+  }),
+
   toStringExtension() {
     return 'AdobeDTM';
   },
@@ -42,6 +50,9 @@ export default BaseAdapter.extend({
       return;
     }
 
+    let window = this.get('window');
+    let { document } = window;
+
     let reference = document.getElementsByTagName('script')[0];
     let script = document.createElement('script');
     script.async = 1;
@@ -59,11 +70,11 @@ export default BaseAdapter.extend({
   },
 
   trackEvent({ event }) {
-    track(event);
+    track.call(this, event);
   },
 
   trackPage({ page }) {
-    track(page);
+    track.call(this, page);
   },
 
   alias() {
@@ -71,6 +82,9 @@ export default BaseAdapter.extend({
   },
 
   willDestroy() {
+    let window = this.get('window');
+    let { document } = window;
+
     let script = document.querySelector('script[src*="assets.adobedtm.com"]');
     if (script) {
       script.remove();
