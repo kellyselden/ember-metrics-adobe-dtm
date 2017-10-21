@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import BaseAdapter from 'ember-metrics/metrics-adapters/base';
 import canUseDOM from 'ember-metrics/utils/can-use-dom';
 
@@ -37,7 +36,11 @@ export default BaseAdapter.extend({
       debug = false
     } = this.get('config');
 
-    Ember.assert(`[ember-metrics] You must pass a valid \`src\` to the ${this.toString()} adapter`, src);
+    // Ember.assert(`[ember-metrics] You must pass a valid \`src\` to the ${this.toString()} adapter`, src);
+
+    if (!src) {
+      return;
+    }
 
     let reference = document.getElementsByTagName('script')[0];
     let script = document.createElement('script');
@@ -68,11 +71,10 @@ export default BaseAdapter.extend({
   },
 
   willDestroy() {
-    if (!canUseDOM) {
-      return;
+    let script = document.querySelector('script[src*="assets.adobedtm.com"]');
+    if (script) {
+      script.remove();
     }
-
-    document.querySelector('script[src*="assets.adobedtm.com"]').remove();
 
     delete window._satellite;
   }
