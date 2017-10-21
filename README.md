@@ -17,18 +17,18 @@ ember install ember-metrics-adobe-dtm
 
 ```js
 // config/environment.js
-  let ENV = {
-    metricsAdapters: [
-      {
-        name: 'AdobeDTM',
-        config: {
-          // leave off `src` if the dtm script is already on the page
-          src: '//assets.adobedtm.com/your-script-url.js',
+let ENV = {
+  metricsAdapters: [
+    {
+      name: 'AdobeDTM',
+      config: {
+        // leave off `src` if the dtm script is already on the page
+        src: '//assets.adobedtm.com/your-script-url.js',
 
-          // optional
-          debug: true
-        }
+        // optional
+        debug: true
       }
-    ]
-  };
+    }
+  ]
+};
 ```
