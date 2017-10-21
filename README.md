@@ -5,27 +5,30 @@
 [![Build Status](https://travis-ci.org/kellyselden/ember-metrics-adobe-dtm.svg?branch=master)](https://travis-ci.org/kellyselden/ember-metrics-adobe-dtm)
 ![Ember Version](https://embadge.io/v1/badge.svg?start=2.8.0)
 
-This README outlines the details of collaborating on this Ember addon.
+[ember-metrics](https://github.com/poteto/ember-metrics) adapter for Adobe [Dynamic Tag Management](https://dtm.adobe.com/)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-metrics-adobe-dtm`
-* `npm install`
+```
+ember install ember-metrics-adobe-dtm
+```
 
-## Running
+## Usage
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+```js
+// config/environment.js
+  let ENV = {
+    metricsAdapters: [
+      {
+        name: 'AdobeDTM',
+        config: {
+          // leave off `src` if the dtm script is already on the page
+          src: '//assets.adobedtm.com/your-script-url.js',
 
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+          // optional
+          debug: true
+        }
+      }
+    ]
+  };
+```
