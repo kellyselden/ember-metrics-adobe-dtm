@@ -25,7 +25,7 @@ let ENV = {
         // leave off `src` if the dtm script is already on the page
         src: '//assets.adobedtm.com/your-script-url.js',
 
-        // optional
+        // turns on dtm debug logging
         debug: true
       }
     }
