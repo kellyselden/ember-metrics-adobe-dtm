@@ -65,20 +65,12 @@ export default BaseAdapter.extend({
     }, { once: true });
   },
 
-  identify() {
-
-  },
-
   trackEvent({ event }) {
     track.call(this, event);
   },
 
   trackPage({ page }) {
     track.call(this, page);
-  },
-
-  alias() {
-
   },
 
   willDestroy() {
