@@ -82,6 +82,7 @@ export default BaseAdapter.extend({
       script.remove();
     }
 
+    window._satellite = null;
     delete window._satellite;
   }
 });

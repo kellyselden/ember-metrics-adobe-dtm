@@ -123,11 +123,11 @@ test('it pushed pending from trackPage if not initialized', async function(asser
 });
 
 test('it initializes pending from trackEvent if not loaded', async function(assert) {
-  delete window._satellite;
+  window._satellite = null;
 
   let adapter = subject({}, () => {});
 
-  assert.notOk('_satellite' in window);
+  assert.notOk(window._satellite);
 
   adapter.trackEvent({ event: 'my test event' });
 
@@ -135,11 +135,11 @@ test('it initializes pending from trackEvent if not loaded', async function(asse
 });
 
 test('it initializes pending from trackPage if not loaded', async function(assert) {
-  delete window._satellite;
+  window._satellite = null;
 
   let adapter = subject({}, () => {});
 
-  assert.notOk('_satellite' in window);
+  assert.notOk(window._satellite);
 
   adapter.trackPage({ page: 'my test page' });
 
@@ -151,13 +151,13 @@ test('it still deletes _satellite if no src', function(assert) {
     src: null
   });
 
-  assert.ok('_satellite' in window);
+  assert.ok(window._satellite);
 
   run(() => {
     adapter.destroy();
   });
 
-  assert.notOk('_satellite' in window);
+  assert.notOk(window._satellite);
 });
 
 test('it removes script', function(assert) {
