@@ -19,7 +19,8 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.6.0"
+    "ember-cli-babel": "^6.6.0",
+    "ember-window-mock": "^0.3.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -44,7 +45,6 @@
     "ember-source": "~3.0.0",
     "ember-source-channel-url": "^1.0.1",
     "ember-try": "^0.2.23",
-    "ember-window-mock": "^0.2.0",
     "eslint-plugin-ember": "^5.0.1",
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.2.3"

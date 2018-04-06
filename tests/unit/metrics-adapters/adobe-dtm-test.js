@@ -1,18 +1,14 @@
 import { run } from '@ember/runloop';
 import { moduleFor, test } from 'ember-qunit';
-import { lookupWindow, mockWindow } from 'ember-window-mock';
+import window, { reset } from 'ember-window-mock';
 import sinon from 'sinon';
 
-let window;
 let setDebugSpy;
 let pageBottomSpy;
 let trackSpy;
 
 moduleFor('metrics-adapter:adobe-dtm', 'adobe-dtm adapter', {
   beforeEach() {
-    mockWindow(this);
-    window = lookupWindow(this);
-
     setDebugSpy = sinon.spy();
     pageBottomSpy = sinon.spy();
     trackSpy = sinon.spy();
@@ -26,6 +22,9 @@ moduleFor('metrics-adapter:adobe-dtm', 'adobe-dtm adapter', {
     };
 
     subject = _subject.bind(this);
+  },
+  afterEach() {
+    reset(window);
   }
 });
 
