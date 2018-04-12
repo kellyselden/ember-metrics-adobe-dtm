@@ -2,6 +2,7 @@ import { run } from '@ember/runloop';
 import { moduleFor, test } from 'ember-qunit';
 import window, { reset } from 'ember-window-mock';
 import sinon from 'sinon';
+import mock from 'ember-metrics-adobe-dtm/test-support/mock';
 
 let setDebugSpy;
 let pageBottomSpy;
@@ -9,17 +10,12 @@ let trackSpy;
 
 moduleFor('metrics-adapter:adobe-dtm', 'adobe-dtm adapter', {
   beforeEach() {
-    setDebugSpy = sinon.spy();
-    pageBottomSpy = sinon.spy();
-    trackSpy = sinon.spy();
-
-    window._satellite = {
-      initialized: true,
-      setDebug: setDebugSpy,
-      pageBottom: pageBottomSpy,
-      track: trackSpy,
-      pending: []
-    };
+    mock({
+      window,
+      pageBottom: pageBottomSpy = sinon.spy(),
+      track: trackSpy = sinon.spy(),
+    });
+    setDebugSpy = sinon.spy(window._satellite, 'setDebug');
 
     subject = _subject.bind(this);
   },
