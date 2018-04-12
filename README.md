@@ -37,6 +37,33 @@ let ENV = {
 };
 ```
 
+This comes with a test helper to mock the _satellite window object.
+
+```js
+import mock, { reset } from 'ember-metrics-adobe-dtm/test-support/mock';
+
+mock();
+reset();
+
+// or
+
+mock({
+  // optional custom window mock
+  window,
+
+  // optional pageBottom callback
+  pageBottom,
+
+  // optional track callback
+  track
+});
+
+reset({
+  // optional custom window mock
+  window
+})
+```
+
 
 Contributing
 ------------------------------------------------------------------------------
