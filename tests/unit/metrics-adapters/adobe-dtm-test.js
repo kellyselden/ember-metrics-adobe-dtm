@@ -141,6 +141,30 @@ test('it initializes pending from trackPage if not loaded', async function(asser
   assert.deepEqual(window._satellite.pending, ['my test page']);
 });
 
+test('it initializes pending from trackEvent if partially loaded', async function(assert) {
+  window._satellite = { };
+
+  let adapter = subject({}, () => {});
+
+  assert.notOk('pending' in window._satellite);
+
+  adapter.trackEvent({ event: 'my test event' });
+
+  assert.deepEqual(window._satellite.pending, ['my test event']);
+});
+
+test('it initializes pending from trackPage if partially loaded', async function(assert) {
+  window._satellite = { };
+
+  let adapter = subject({}, () => {});
+
+  assert.notOk('pending' in window._satellite);
+
+  adapter.trackPage({ page: 'my test page' });
+
+  assert.deepEqual(window._satellite.pending, ['my test page']);
+});
+
 test('it still deletes _satellite if no src', function(assert) {
   let adapter = subject({
     src: null

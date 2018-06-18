@@ -18,6 +18,7 @@ function track(event) {
   if (_satellite.initialized) {
     _satellite.track(event);
   } else {
+    _satellite.pending = _satellite.pending || [];
     _satellite.pending.push(event);
   }
 }
