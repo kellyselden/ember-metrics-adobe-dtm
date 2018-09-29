@@ -1,6 +1,6 @@
 {
   "name": "ember-metrics-adobe-dtm",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "ember-metrics adapter for Adobe Dynamic Tag Management",
   "keywords": [
     "ember-addon"
