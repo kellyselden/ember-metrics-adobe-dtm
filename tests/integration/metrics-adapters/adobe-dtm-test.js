@@ -9,6 +9,7 @@ let pageBottomSpy;
 let trackSpy;
 
 moduleFor('metrics-adapter:adobe-dtm', 'adobe-dtm adapter', {
+  integration: true,
   beforeEach() {
     mock({
       window,
